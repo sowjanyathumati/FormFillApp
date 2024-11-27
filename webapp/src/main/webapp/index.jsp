@@ -1,51 +1,101 @@
-<form action="action_page.php">
-  <div class="container">
-    <h1> Student Registration! </h1>
-    <p>Please fill in this form</p>
-    <hr>
-    <br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Feedback System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: white;
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            display: none;
+        }
+        .authorized {
+            background-color: #28a745;
+        }
+        .unauthorized {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
 
-    <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" id="name" required>
-    <br>
+<div class="form-container">
+    <h2>Mess Feedback System</h2>
+    <form id="authForm">
+        <div class="form-group">
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId" name="userId" placeholder="Enter your User ID" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+    <div id="message" class="message"></div>
+</div>
 
-    <label for="aadhar"><b>Aadhar</b></label>
-    <input type="text" placeholder="Enter aadhar" name="aadhar" id="aadhar" required>
-    <br>
+<script>
+    const form = document.getElementById('authForm');
+    const messageDiv = document.getElementById('message');
 
-    <label for="mother"><b>Mother Name</b></label>
-    <input type="text" placeholder="Mother Name" name="mother" id="mother" required>
-    <br>
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    <label for="father"><b>Father Name</b></label>
-    <input type="text" placeholder="Father Name" name="father" id="father" required>
-    <br>
+        // Mock authorization check
+        const userId = document.getElementById('userId').value;
+        const password = document.getElementById('password').value;
 
-    <label for="brother"><b>Brother Name</b></label>
-    <input type="text" placeholder="Brother Name" name="brother" id="brother" required>
-    <br>
+        if (userId === 'authorizedUser' && password === '12345') {
+            // Authorized user
+            messageDiv.textContent = 'Welcome! You are authorized to submit feedback.';
+            messageDiv.className = 'message authorized';
+            messageDiv.style.display = 'block';
+        } else {
+            // Unauthorized user
+            messageDiv.textContent = 'Error: You are not authorized to submit feedback.';
+            messageDiv.className = 'message unauthorized';
+            messageDiv.style.display = 'block';
+        }
+    });
+</script>
 
-    <label for="sister"><b>Sister Name</b></label>
-    <input type="text" placeholder="sister Name" name="sister" id="sister" required>
-    <br>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
-    <br>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-    <br>
-
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-    <br>
-
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-    <button type="submit" class="registerbtn">Register</button>
-  </div>
-
-  <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
-  </div>
-</form>
+</body>
+</html>
