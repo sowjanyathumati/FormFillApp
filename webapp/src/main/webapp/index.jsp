@@ -83,7 +83,7 @@
         const userId = document.getElementById('userId').value;
         const password = document.getElementById('password').value;
 
-        if (userId === 'authorizedUser' && password === '12345') {
+        if ((userId === 'S191099'||userId === 'S190930'||userId === 'S190323'||userId === 'S190077') && password === '12345') {
             // Authorized user
             messageDiv.textContent = 'Welcome! You are authorized to submit feedback.';
             messageDiv.className = 'message authorized';
